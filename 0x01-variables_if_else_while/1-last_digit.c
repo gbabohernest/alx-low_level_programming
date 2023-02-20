@@ -6,6 +6,7 @@
 *
 * Return: 0 on (success)
 */
+/* main - Determine if a random number last digit is greater than 5, or less than 6 and not equal to zero or it is equal to zero. */
 int main(void)
 {
 	int n;
