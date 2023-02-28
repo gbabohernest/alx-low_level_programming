@@ -1,11 +1,10 @@
 #include "main.h"
 
 /**
-* print_rev() - reverse a string and print it to the standard output
-*@s: a pointer variable as an argument
+* print_rev()- function that print a string in reverse
+*@s:character parameter
 * Return: nothing (void)
 */
-
 void print_rev(char *s)
 {
 	int len = 0;
