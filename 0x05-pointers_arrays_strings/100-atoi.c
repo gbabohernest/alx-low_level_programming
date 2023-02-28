@@ -26,10 +26,10 @@ int  _atoi(char *s)
 			while (s[index] > 47 && s[index] < 58)
 			{
 				result = result * 10 - (s[index++] - 48);
-				break;
+				/*break;*/
 			}
-				/*result = result * 10 - (s[index++] - 48);
-				break; */
+				/*result = result * 10 - (s[index++] - 48); */
+				break; 
 		}
 	}
 	return (result *= sign % 2 == 0 ? -1 : 1);
