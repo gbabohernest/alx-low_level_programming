@@ -9,46 +9,21 @@
  * Return: 0
  */
 
-
 int main(void)
 {
-	int counter, sum, random;
-
-	sum = 0;
-	counter = 0;
-	random = 0;
-
-	char password [80];
+	int myrand;
+	int count;
+	int total;
 
 	srand(time(NULL));
-
-	while (sum < 2772)
+	for (count = 0, total = 2772; total > 122; count++)
 	{
-
-		if (2772 - sum < 48)
-	{
-		sum -= password[--counter];
+		myrand = (rand() % 125) + 1;
+		printf("%c", myrand);
+		total -= myrand;
 	}
-		else if (2772 - sum <= 126)
-		{
-			random = 2772 - sum;
-		}
-		else
-		{
-			random = rand() % (126 - 48) + 48;
-		}
+	printf("%c", total);
 
-		if (random)
-		{
-			password[counter++] = random;
-			sum += random;
-		}
-		random = 0;
-	}
-
-	password[counter] = '\0';
-	printf("%s\n", password);
-
-	return 0;
+	return (0);
 }
 
