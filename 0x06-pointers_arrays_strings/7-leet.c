@@ -11,16 +11,17 @@
 char *leet(char *str)
 {
 	int i, j;
-	char letter_keys[50] = "aAeEoOtTlL";
-	char num_keys[50] = "43071";
+
+	char alpha[80] = "aAeEoOtTlL";
+	char numbers[80] = "43071";
 
 	for (i = 0; str[i] != '\0'; ++i)
 	{
-		for (j = 0; letter_keys[j] != '\n'; j++)
+		for (j = 0; alpha[j] != '\0'; j++)
 		{
-			if (str[i] == letter_keys[j])
+			if (str[i] == alpha[j])
 			{
-				str[i] = num_keys[j / 2];
+				str[i] = numbers[j / 2];
 			}
 		}
 	}
