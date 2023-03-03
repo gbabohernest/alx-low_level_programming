@@ -11,6 +11,7 @@
 char *leet(char *str)
 {
 	int i, j;
+	/*char letter_keys[] = {"aAeEoOtTlL"};*/
 	char letter_keys[] = {'a', 'A', 'e', 'E', 'o', 'O', 't', 'T', 'l', 'L'};
 	char num_keys[] = {"43071"};
 
