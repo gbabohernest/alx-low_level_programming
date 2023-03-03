@@ -6,13 +6,12 @@
 *
 *@str: string to change
 *
-* Return: a string in uppercase
-*/
-
-/**
 *ASCII value of lowercase character range is 97 - 122
 *subtracting 32 from its ASCII value will convert it to uppercase
+*
+*Return: a string in uppercase
 */
+
 
 char *string_toupper(char *str)
 {
