@@ -14,7 +14,7 @@ char *leet(char *str)
 	char letter_keys[] = "aAeEoOtTlL";
 	char num_keys[] = "43071";
 
-	for (i = 0; str[i] != '\0'; i++)
+	for (i = 0; str[i] != '\0'; ++i)
 	{
 		for (j = 0; letter_keys[j] != '\n'; j++)
 		{
