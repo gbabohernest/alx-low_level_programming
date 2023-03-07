@@ -14,15 +14,23 @@
 unsigned int _strspn(char *s, char *accept)
 {
 	unsigned int prefix_len = 0;
-	int i = 0;
+	int i;
 
-	while (s[i] >= '\n')
+	while (*s)
 	{
-		if (accept[i] < '\n')
+		for (i = 0; accept[i]; i++)
 		{
-			prefix_len++;
+			if (*s == accept[i])
+			{
+				prefix_len++;
+				break;
+			}
+			else if (accept[i + 1] == '\0')
+			{
+				return (prefix_len);
+			}
 		}
-		i++;
+		s++;
 	}
 	return (prefix_len);
 }
