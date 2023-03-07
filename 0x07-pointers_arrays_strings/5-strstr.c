@@ -20,12 +20,19 @@ char *_strstr(char *haystack, char *needle)
 	}
 	while (*haystack)
 	{
-		for (i = 0; needle[i]; i++)
+		i = 0;
+		
+		if (haystack[i] == needle[i])
 		{
-			if ( haystack[i] == needle[i])
+			do
 			{
-				return (needle);
+				if (needle[i + 1] == '\0')
+				{
+					return (haystack);
+				}
+				i++;
 			}
+			while (haystack[i] == needle[i]);
 		}
 		haystack++;
 	}
