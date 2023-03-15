@@ -3,7 +3,7 @@
 
 /**
 * main - Prints the name of the program, followed by a new line
-
+*
 *@argc:number of arguments supplied to the program
 *@argv:an array of pointers to the arguments.
 *
