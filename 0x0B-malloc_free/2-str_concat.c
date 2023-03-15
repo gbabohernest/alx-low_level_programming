@@ -5,7 +5,7 @@
 * str_concat - concatenates two strings
 *
 *@s1: string to concatenate
-@s2: string to concatenate
+*@s2: string to concatenate
 *
 *Return: NULL on failure
 *	a pointer to a newly allocated space in
