@@ -5,13 +5,16 @@
 
 /**
 * main - Multiplies two numbers.
-* Description: 	the program should print the result of the
+* Description:	the program should print the result of the
 *		multiplication, followed by a newline.
-*	  	You can assume that two numbers & result of the
+*		You can assume that two numbers & result of the
 *		multiplicatioon can be stored in an integer.
 *		If the program does not receive two arguments,
 *		the program should print ERROR, followed by a new line,
 *		and return 1
+*
+*@argc: number of arguments to be passed to the program
+*@argv: an array of pointers to the arguments.
 *
 * Return: 0 (success)
 */
@@ -28,7 +31,6 @@ int main(int argc, char *argv[])
 		printf("%s\n", "Error");
 		return (1);
 	}
-	
 	for (i = 1; i < argc; i++)
 	{
 		product = product * atoi(argv[i]);
