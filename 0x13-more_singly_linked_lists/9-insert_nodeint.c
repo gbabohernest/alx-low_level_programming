@@ -23,12 +23,17 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	{
 		return (NULL);
 	}
-
-	for (; count < idx - 1; count++)
+	while (temp_node_ptr != NULL)
 	{
+		if (count  ==  idx - 1)
+		{
+			/*temp_node_ptr = temp_node_ptr->next;*/
+
+			newNode->next = temp_node_ptr->next;
+			temp_node_ptr->next = newNode;
+		}
 		temp_node_ptr = temp_node_ptr->next;
+		count++;
 	}
-	newNode->next = temp_node_ptr->next;
-	temp_node_ptr->next = newNode;
 	return (newNode);
 }
