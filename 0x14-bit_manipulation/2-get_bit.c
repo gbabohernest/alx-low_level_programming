@@ -13,11 +13,12 @@
 
 int get_bit(unsigned long int n, unsigned int index)
 {
-	int bit_value;
+	int bit_value, mask;
 
 	if (n != 0)
-	{
-		bit_value = (n >> index) & 1;
+	{	mask = 1<< index;
+		/*bit_value = (n >> index) & 1;*/
+		bit_value = (n & mask) != 0;
 		return (bit_value);
 	}
 	return (-1);
