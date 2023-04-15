@@ -135,7 +135,7 @@ int writeToFiles(int fd_dest, char buffer[BUFFER_SIZE],
 {
 	int written_content;
 
-	written_content = (write(fd_dest, buffer, bytes_read) != bytes_read);
+	written_content = write(fd_dest, buffer, bytes_read);
 
 	if (written_content == -1)
 	{
