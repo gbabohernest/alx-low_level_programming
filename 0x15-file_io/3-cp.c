@@ -4,7 +4,7 @@
 int openFiles(char *file_from, char *file_to);
 int readFiles(int fd_src, int fd_dest, char *file_from, char *file_to);
 int writeToFiles(int fd_dest, char buffer[BUFFER_SIZE],
-		ssize_t bytes_read, char *file_to);
+		int bytes_read, char *file_to);
 
 /**
 * main - copies the content of a file to another file
@@ -62,17 +62,13 @@ int openFiles(char *file_from, char *file_to)
 
 	readFiles(fd_src, fd_dest, file_from, file_to);
 
-	close(fd_src);
-
-	if (fd_src == -1)
+	if (close(fd_src) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_src);
 		exit(100);
 	}
 
-	close(fd_dest);
-
-	if (fd_dest == -1)
+	if (close(fd_dest) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_dest);
 		exit(100);
@@ -94,7 +90,7 @@ int openFiles(char *file_from, char *file_to)
 int readFiles(int fd_src, int fd_dest, char *file_from, char *file_to)
 {
 	char buffer[BUFFER_SIZE];
-	ssize_t bytes_read;
+	int bytes_read;
 
 	bytes_read = read(fd_src, buffer, BUFFER_SIZE);
 
@@ -135,9 +131,9 @@ int readFiles(int fd_src, int fd_dest, char *file_from, char *file_to)
 */
 
 int writeToFiles(int fd_dest, char buffer[BUFFER_SIZE],
-		ssize_t bytes_read, char *file_to)
+		int bytes_read, char *file_to)
 {
-	ssize_t written_content;
+	int written_content;
 
 	written_content = (write(fd_dest, buffer, bytes_read) != bytes_read);
 
