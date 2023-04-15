@@ -3,7 +3,7 @@
 
 int openFiles(char *file_from, char *file_to);
 int readFiles(int fd_src, int fd_dest, char *file_from, char *file_to);
-int writeToFiles(int fd_dest, char *buffer[BUFFER_SIZE],
+int writeToFiles(int fd_dest, char buffer[BUFFER_SIZE],
 		ssize_t bytes_read, char *file_to);
 
 /**
@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 int openFiles(char *file_from, char *file_to)
 {
 	int fd_src, fd_dest;
-	unsigned int mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
+	/*unsigned int mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;*/
 
 	fd_src = open(file_from, O_RDONLY);
 
@@ -51,7 +51,8 @@ int openFiles(char *file_from, char *file_to)
 		exit(98);
 	}
 
-	fd_dest = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, mode);
+	fd_dest = open(file_to, O_WRONLY | O_CREAT | O_TRUNC,
+			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 
 	if (fd_dest == -1)
 	{
@@ -92,7 +93,7 @@ int openFiles(char *file_from, char *file_to)
 
 int readFiles(int fd_src, int fd_dest, char *file_from, char *file_to)
 {
-	char *buffer[BUFFER_SIZE];
+	char buffer[BUFFER_SIZE];
 	ssize_t bytes_read;
 
 	bytes_read = read(fd_src, buffer, BUFFER_SIZE);
@@ -104,6 +105,21 @@ int readFiles(int fd_src, int fd_dest, char *file_from, char *file_to)
 	}
 
 	writeToFiles(fd_dest, buffer, bytes_read, file_to);
+
+	while (bytes_read != 0)
+	{
+		bytes_read = read(fd_src, buffer, BUFFER_SIZE);
+		if (bytes_read == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Cant read from file %s\n", file_from);
+			exit(98);
+		}
+		if (bytes_read == 0)
+		{
+			return (0);
+		}
+		writeToFiles(fd_dest, buffer, bytes_read, file_to);
+	}
 	return (0);
 }
 
@@ -118,12 +134,12 @@ int readFiles(int fd_src, int fd_dest, char *file_from, char *file_to)
 * Return: 0 on success, Exit 99 on failure
 */
 
-int writeToFiles(int fd_dest, char *buffer[BUFFER_SIZE],
+int writeToFiles(int fd_dest, char buffer[BUFFER_SIZE],
 		ssize_t bytes_read, char *file_to)
 {
 	ssize_t written_content;
 
-	written_content = write(fd_dest, buffer, bytes_read);
+	written_content = (write(fd_dest, buffer, bytes_read) != bytes_read);
 
 	if (written_content == -1)
 	{
