@@ -51,7 +51,7 @@ int openFiles(char *file_from, char *file_to)
 		exit(98);
 	}
 
-	fd_dest = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, mode);
+	fd_dest = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, mode);
 
 	if (fd_dest == -1)
 	{
