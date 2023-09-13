@@ -21,9 +21,9 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 
 	/*get the hash code*/
 	index = key_index((unsigned char *)key, ht->size);
-        node = ht->array[index];
+	node = ht->array[index];
 
-	while(node != NULL)
+	while (node != NULL)
 	{
 		if (strcmp(key, node->key) == 0)
 		{
