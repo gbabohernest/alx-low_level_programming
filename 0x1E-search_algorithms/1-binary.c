@@ -1,4 +1,3 @@
-#include <math.h>
 #include "search_algos.h"
 /**
 * binary_search - Searches for a value in a sorted array of integers.
@@ -32,7 +31,7 @@ int binary_search(int *array, size_t size, int value)
 		printf("\n");
 
 		/*find middle element of the array*/
-		middle = (int)floor((double)(start + end)/2);
+		middle = (int)(start + end) / 2;
 
 		if (value < array[middle])
 		{	/*search the lower bound of the array*/
