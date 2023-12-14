@@ -15,33 +15,33 @@
 
 int jump_search(int *array, size_t size, int value)
 {
-	int jump_size, start, end, i;
+	size_t jump_size, start, end, i;
 
 	if (array == NULL || size == 0)
 		return (-1);
 
-	jump_size = (int)sqrt(size);
+	jump_size = sqrt(size);
 	start = 0;
 	end = jump_size;
 
-	while (end < (int)size && array[end] < value)
+	while (end < size && array[end] < value)
 	{
-		printf("Value checked array[%d] = [%d]\n", start, array[start]);
-		printf("Value checked array[%d] = [%d]\n", end, array[end]);
+		printf("Value checked array[%ld] = [%d]\n", start, array[start]);
+		printf("Value checked array[%ld] = [%d]\n", end, array[end]);
 		start = end;
 		end += jump_size;
 	}
 
 	/*Adjust end to avoid accessing beyond array bounds*/
-	end = (end < (int)size) ? end : (int)size - 1;
+	end = (end < size) ? end : size - 1;
 
 	/*Found the block for which the element exists*/
-	printf("Value found between indexes [%d] and [%d]\n", start, end);
+	printf("Value found between indexes [%ld] and [%ld]\n", start, end);
 
 	/* Perform linear search for the element*/
 	for (i = start; i <= end; i++)
 	{
-		printf("Value checked array[%d] = [%d]\n", i, array[i]);
+		printf("Value checked array[%ld] = [%d]\n", i, array[i]);
 
 		if (array[i] == value)
 			return (i);
