@@ -1,4 +1,3 @@
-#include <math.h>
 #include "search_algos.h"
 
 /**
@@ -15,36 +14,32 @@
 
 int jump_search(int *array, size_t size, int value)
 {
-	size_t jump_size, start, end, i;
+	size_t jump_size, start, i;
 
-	if (array == NULL)
+	if (array == NULL || size == 0)
 		return (-1);
 
 	jump_size = sqrt(size);
-	start = 0;
-	end = jump_size;
 
-	while (end < size && array[end] < value)
+	i = start = 0;
+	while (start < size && array[start] < value)
 	{
 		printf("Value checked array[%ld] = [%d]\n", start, array[start]);
-		printf("Value checked array[%ld] = [%d]\n", end, array[end]);
-		start = end;
-		end += jump_size;
+		i = start;
+		start += jump_size;
 	}
 
-	/*Adjust end to avoid accessing beyond array bounds*/
-	end = (end < size) ? end : size - 1;
+	printf("Value found between indexes [%ld] and [%ld]\n", i, start);
 
-	/*Found the block for which the element exists*/
-	printf("Value found between indexes [%ld] and [%ld]\n", start, end);
+	start = start < size - 1 ? start : size - 1;
 
-	/* Perform linear search for the element*/
-	for (i = start; i <= end; i++)
+	while (i < start && array[i] < value)
 	{
 		printf("Value checked array[%ld] = [%d]\n", i, array[i]);
-
-		if (array[i] == value)
-			return (i);
+		i++;
 	}
-	return (-1);
+
+	printf("Value checked array[%ld] = [%d]\n", i, array[i]);
+
+	return (array[i] == value ? (int)i : -1);
 }
