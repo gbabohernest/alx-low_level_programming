@@ -19,21 +19,22 @@ int exponential_search(int *array, size_t size, int value)
 {
 	size_t start, end, index;
 
-	if (array == NULL)
+	if (array == NULL && size == 0)
 		return (-1);
 
 	/*Handle case where the value is at the first index*/
-	if (array[0] == value)
+	if (array[0] != value)
 	{
-		printf("Value checked array[1] = [%d]\n", array[0]);
-		return (0);
-	}
-	start = 1;
+		/*printf("Value checked array[1] = [%d]\n", array[0]);*/
+		/*return (0);*/
 
-	while (start < size && array[start] < value)
-	{
-		printf("Value checked array[%ld] = [%d]\n", start, array[start]);
-		start *= 2;
+		start = 1;
+
+		while (start < size && array[start] < value)
+		{
+			printf("Value checked array[%ld] = [%d]\n", start, array[start]);
+			start *= 2;
+		}
 	}
 	/*Ensure end does not exceed array size*/
 	end = (start < size) ? start : size - 1;
