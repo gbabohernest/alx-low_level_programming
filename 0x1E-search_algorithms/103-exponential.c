@@ -25,12 +25,12 @@ int exponential_search(int *array, size_t size, int value)
 	/*Handle case where the value is at the first index*/
 	if (array[0] == value)
 	{
-		printf("Value checked array[1] = [%d]\n", array[1]);
+		printf("Value checked array[1] = [%d]\n", array[0]);
 		return (0);
 	}
 	start = 1;
 
-	while (start < size && array[start] <= value)
+	while (start < size && array[start] < value)
 	{
 		printf("Value checked array[%ld] = [%d]\n", start, array[start]);
 		start *= 2;
@@ -65,9 +65,9 @@ int exp_search_helper(int *array, size_t start, size_t end, int value)
 	size_t i;
 	int mid;
 
-	while (start <= end)
+	while (end >= start)
 	{
-		mid = (int)(start + end) / 2;
+		mid = (int)(start + (end - start) / 2);
 
 		/*Print the current array being searched*/
 		printf("Searching in array:");
