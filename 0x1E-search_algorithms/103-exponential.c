@@ -29,22 +29,19 @@ int exponential_search(int *array, size_t size, int value)
 		return (0);
 	}
 	start = 1;
-	end = 2;
 
-	while (end < size && array[end] < value)
+	while (start < size && array[start] <= value)
 	{
 		printf("Value checked array[%ld] = [%d]\n", start, array[start]);
-		start = end;
-		end *= 2;
-		/*start *= 2;*/
+		start *= 2;
 	}
 	/*Ensure end does not exceed array size*/
-	end = (end < size) ? end : size - 1;
+	end = (start < size) ? start : size - 1;
 
-	printf("Value checked array[%ld] = [%d]\n", start, array[start]);
-	printf("Value found between indexes [%ld] and [%ld]\n", start, end);
+	/*printf("Value checked array[%ld] = [%d]\n", start, array[start]);*/
+	printf("Value found between indexes [%ld] and [%ld]\n", start / 2, end);
 
-	index = exp_search_helper(array, start, end, value);
+	index = exp_search_helper(array, start / 2, end, value);
 
 	return (index);
 }
@@ -65,11 +62,12 @@ int exponential_search(int *array, size_t size, int value)
 
 int exp_search_helper(int *array, size_t start, size_t end, int value)
 {
-	size_t mid, i;
+	size_t i;
+	int mid;
 
 	while (start <= end)
 	{
-		mid = (start + end) / 2;
+		mid = (int)(start + end) / 2;
 
 		/*Print the current array being searched*/
 		printf("Searching in array:");
@@ -83,7 +81,7 @@ int exp_search_helper(int *array, size_t start, size_t end, int value)
 
 		/*Check if middle element is the target value*/
 		if (array[mid] == value)
-			return ((int)mid);
+			return (mid);
 
 		if (array[mid] < value)
 		{
